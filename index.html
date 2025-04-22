@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spargat Group - Innovative Blockman GO Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #5865F2;
+            --secondary: #3BA55C;
+            --accent: #FF7675;
+            --dark: #2D2D3A;
+            --light: #F8F9FA;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--dark), #1A1A24);
+            color: var(--light);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(45, 45, 58, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-logo {
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            transform: rotate(-5deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 2rem 4rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 6rem 0 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.3);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 4rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="https://spargatgroup.netlify.app/logo_home.png" alt="Spargat Group Logo" class="nav-logo">
+            </a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#goals">Goals</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Innovative Solutions for Blockman GO Ecosystem</h1>
+            <p>Developing cross-platform, customizable open-source technology for the community</p>
+        </section>
+
+        <section id="about">
+            <h2 class="section-title">About Spargat Group</h2>
+            <p>Spargat Group is an innovative team dedicated to developing alternative solutions for the Blockman GO ecosystem, with focus on cross-platform accessibility, customization, and open-source technology for the community. We're known for creating Blockman Launcher and CubicalCore, among other projects.</p>
+        </section>
+
+        <section id="projects">
+            <h2 class="section-title">Main Projects</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3><i class="fas fa-rocket"></i> Blockman Launcher</h3>
+                    <p>An alternative launcher for Blockman GO with support for multiple platforms:</p>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span>Windows, Linux, macOS, Android and iOS</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span>Developed in response to BMGO Web removal</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span>Lightweight, practical and accessible</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span>Keeps the game active for all platforms</span>
+                    </div>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-cube"></i> CubicalCore</h3>
+                    <p>A ported version of Minecraft Pocket Edition Demo for modern platforms:</p>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span>Runs on Linux and Windows XP or newer</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span>Base for custom servers or game modes</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span>Modular, lightweight and expandable</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span>Create Bedwars, Skyblock, Lucky Block, etc.</span>
+                    </div>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="goals">
+            <h2 class="section-title">Our Goals</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3><i class="fas fa-universal-access"></i> Total Accessibility</h3>
+                    <p>Bring the Blockman experience to all devices regardless of platform limitations or official support.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-history"></i> Experience Preservation</h3>
+                    <p>Revive what the community loves, like the BMGO Web era, keeping classic gameplay available.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-code-branch"></i> Open-Source Community</h3>
+                    <p>Projects built with user and developer collaboration, maintaining a spirit of open contribution.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-paint-brush"></i> Creative Freedom</h3>
+                    <p>Enable unique servers and game modes through CubicalCore's modular foundation.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <h2 class="section-title">Connect With Us</h2>
+            <div class="social-links">
+                <a href="https://github.com/spargatgroup" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://discord.gg/PqZtGn3HMn" target="_blank"><i class="fab fa-discord"></i></a>
+                <a href="https://youtube.com/@BlockmanLauncher" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>© 2024 Spargat Group. Not affiliated with NetEase or Mojang.</p>
+        </div>
+    </footer>
+</body>
+</html>
