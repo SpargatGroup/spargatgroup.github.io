@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Downloading CubeWorld...</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #2D2D3A, #1A1A24);
+      color: #fff;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .loader {
+      border: 8px solid #444;
+      border-top: 8px solid #5865F2;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      animation: spin 1.2s linear infinite;
+      margin: 30px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .downloading-text {
+      font-size: 1.8rem;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .fallback {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: #5865F2;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(88, 101, 242, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="loader"></div>
+  <div class="downloading-text">Downloading <strong>CubeWorld v1.0.1</strong>...</div>
+
+  <div class="fallback">
+    If your download doesn't start automatically, 
+    <a class="btn" href="https://raw.githubusercontent.com/SpargatGroup/cubeworld/main/CubeWorld/cubeworld_v101_build1.apk" download>
+      <i class="fas fa-download"></i> Click here
+    </a>
+  </div>
+
+  <script>
+    // Auto-trigger download
+    window.onload = () => {
+      const link = document.createElement("a");
+      link.href = "https://raw.githubusercontent.com/SpargatGroup/cubeworld/main/CubeWorld/cubeworld_v101_build1.apk";
+      link.download = "cubeworld_v101_build1.apk";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+  </script>
+
+</body>
+</html>
