@@ -2,24 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Downloading CubeWorld...</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    body {
+    body, html {
+      margin: 0; padding: 0;
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #2D2D3A, #1A1A24);
       color: #fff;
-      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .centered {
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      height: 100vh;
+      align-items: center;
+      height: 100%;
       text-align: center;
     }
 
+    /* Loader spinner */
     .loader {
       border: 8px solid #444;
       border-top: 8px solid #5865F2;
@@ -27,22 +32,46 @@
       width: 80px;
       height: 80px;
       animation: spin 1.2s linear infinite;
-      margin: 30px auto;
+      margin-bottom: 20px;
     }
-
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
 
-    .downloading-text {
-      font-size: 1.8rem;
+    /* Pulse animation */
+    .pulse {
       animation: pulse 1.5s ease-in-out infinite;
     }
-
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.5; }
+    }
+
+    /* Loading Screen */
+    #loadingScreen {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #1A1A24;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    /* Downloading Screen (hidden initially) */
+    #downloadScreen {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .downloading-text {
+      font-size: 1.8rem;
+      margin-top: 10px;
+      font-weight: 600;
+      color: #fff;
     }
 
     .fallback {
@@ -63,6 +92,7 @@
       font-weight: 500;
       transition: all 0.3s ease;
       margin-top: 1rem;
+      cursor: pointer;
     }
 
     .btn:hover {
@@ -73,25 +103,67 @@
 </head>
 <body>
 
-  <div class="loader"></div>
-  <div class="downloading-text">Downloading <strong>CubeWorld v1.0.1</strong>...</div>
+  <!-- Loading Screen -->
+  <div id="loadingScreen" class="centered">
+    <div class="loader"></div>
+    <div class="pulse" style="font-size:1.5rem;">Loading resources, please wait...</div>
+  </div>
 
-  <div class="fallback">
-    If your download doesn't start automatically, 
-    <a class="btn" href="https://raw.githubusercontent.com/SpargatGroup/cubeworld/main/CubeWorld/cubeworld_v101_build1.apk" download>
-      <i class="fas fa-download"></i> Click here
-    </a>
+  <!-- Downloading Screen -->
+  <div id="downloadScreen" class="centered" style="flex-direction: column;">
+    <div class="loader"></div>
+    <div class="downloading-text">Downloading <strong>CubeWorld v1.0.1</strong>...</div>
+
+    <div class="fallback">
+      If your download doesn't start automatically, 
+      <a class="btn" href="https://raw.githubusercontent.com/SpargatGroup/cubeworld/main/CubeWorld/cubeworld_v101_build1.apk" download>
+        <i class="fas fa-download"></i> Click here
+      </a>
+    </div>
   </div>
 
   <script>
-    // Auto-trigger download
-    window.onload = () => {
-      const link = document.createElement("a");
-      link.href = "https://raw.githubusercontent.com/SpargatGroup/cubeworld/main/CubeWorld/cubeworld_v101_build1.apk";
-      link.download = "cubeworld_v101_build1.apk";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+    // URL of the file to download
+    const downloadUrl = "https://raw.githubusercontent.com/SpargatGroup/cubeworld/main/CubeWorld/cubeworld_v101_build1.apk";
+
+    // Simulate resource loading
+    function preloadResources() {
+      return new Promise((resolve) => {
+        // Example: preload image or any assets here if needed
+        // For demo, just wait 2 seconds to simulate loading
+        setTimeout(resolve, 2000);
+      });
+    }
+
+    function startDownload() {
+      // Cooldown delay before download starts (3 seconds)
+      setTimeout(() => {
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = "cubeworld_v101_build1.apk";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }, 3000);
+    }
+
+    window.onload = async () => {
+      // Preload resources on loading screen
+      await preloadResources();
+
+      // Hide loading screen with fade effect
+      const loadingScreen = document.getElementById("loadingScreen");
+      loadingScreen.style.opacity = "0";
+      setTimeout(() => {
+        loadingScreen.style.display = "none";
+
+        // Show downloading screen
+        const downloadScreen = document.getElementById("downloadScreen");
+        downloadScreen.style.display = "flex";
+
+        // Start cooldown + download
+        startDownload();
+      }, 500); // match transition duration
     };
   </script>
 
