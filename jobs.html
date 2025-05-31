@@ -3,284 +3,356 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join Us - Spargat Group Developer Recruitment</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+    <title>Careers - Join Spargat Group</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <style>
         :root {
-            --primary: #5865F2;
-            --secondary: #3BA55C;
-            --accent: #FF7675;
-            --dark: #2D2D3A;
-            --light: #F8F9FA;
+            --primary: #7950F2; /* Vibrant Purple/Indigo - Main Accent */
+            --primary-light: #926BFF;
+            --primary-glow: rgba(121, 80, 242, 0.5);
+            --primary-soft-glow: rgba(121, 80, 242, 0.3);
+
+            --dark-bg: #0D0C1D;
+            --content-bg: #121127;
+            --content-bg-alpha: rgba(18, 17, 39, 0.85);
+            --border-color: rgba(121, 80, 242, 0.2);
+
+            --light-text: #E0E7FF;
+            --medium-text: #A0A8C0;
+
+            --navbar-height: 70px;
+
+            --scrollbar-track: #1A1932;
+            --scrollbar-thumb: var(--primary);
+            --scrollbar-thumb-hover: var(--primary-light);
+
+            --primary-rgb: 121, 80, 242; /* For direct use in rgba() for card hover */
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; background: var(--dark-bg); scrollbar-gutter: stable both-edges; }
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--dark), #1A1A24);
-            color: var(--light);
-            margin: 0;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif; background-color: var(--dark-bg); color: var(--light-text);
+            line-height: 1.7; overflow-x: hidden; min-height: 100vh; position: relative;
+            scrollbar-width: thin; scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
         }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+        ::-webkit-scrollbar-thumb { background-color: var(--scrollbar-thumb); border-radius: 10px; border: 2px solid var(--scrollbar-track); }
+        ::-webkit-scrollbar-thumb:hover { background-color: var(--scrollbar-thumb-hover); }
+        #particles-js { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; opacity: 0.08; }
+        .content-wrapper { position: relative; z-index: 1; }
 
         .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(45, 45, 58, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: fixed; top: 0; left:0; width: 100%; background: var(--content-bg-alpha);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            z-index: 1000; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid var(--border-color); height: var(--navbar-height);
+            display:flex; align-items: center;
         }
-
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
+            max-width: 1200px; width:100%; margin: 0 auto; display: flex;
+            justify-content: space-between; align-items: center; padding: 0 2rem;
         }
-
+        .nav-logo-link { display: flex; align-items: center;}
         .nav-logo {
-            height: 50px;
-            transition: transform 0.3s ease;
+            height: 38px; transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 5px var(--primary-soft-glow));
         }
-
-        .nav-logo:hover {
-            transform: rotate(-5deg);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
+        .nav-logo:hover { transform: scale(1.05); filter: drop-shadow(0 0 10px var(--primary-glow));}
+        .nav-links { display: flex; gap: 1.2rem; }
         .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            color: var(--medium-text); text-decoration: none; font-weight: 500;
+            transition: color 0.3s ease, text-shadow 0.3s ease; position: relative;
+            padding: 0.5rem 0.25rem; font-size: 0.9rem;
         }
-
-        .nav-links a:hover {
-            color: var(--primary);
+        .nav-links a:hover, .nav-links a:focus, .nav-links a.active { color: var(--light-text); text-shadow: 0 0 8px var(--primary-soft-glow); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -2px; left: 50%;
+            transform: translateX(-50%); width: 0; height: 2px; background: var(--primary);
+            border-radius:1px; transition: width 0.3s ease-out;
         }
+        .nav-links a:hover::after, .nav-links a:focus::after, .nav-links a.active::after { width: 100%; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 2rem 4rem;
+        .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; width: 100%; } /* Narrower for readability on text-heavy pages */
+
+        section {
+            padding-top: calc(var(--navbar-height) + 4rem);
+            padding-bottom: 4rem;
+            min-height: auto;
         }
+        section[id] { scroll-margin-top: var(--navbar-height); }
 
-        .hero {
+        .jobs-hero { /* Similar to main hero but adapted */
+            padding-top: calc(var(--navbar-height) + 2rem);
+            padding-bottom: 3rem;
             text-align: center;
-            padding: 6rem 0 4rem;
+            position: relative;
         }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .jobs-hero h1 {
+            font-size: clamp(2.2rem, 5.5vw, 3.5rem);
+            font-weight: 700; margin-bottom: 1rem;
+            line-height: 1.2; color: var(--light-text);
+            text-shadow: 0 0 15px var(--primary-soft-glow);
+        }
+        .jobs-hero p.subtitle {
+            font-size: clamp(1rem, 2.2vw, 1.25rem); max-width: 700px; margin: 0 auto 2rem;
+            color: var(--medium-text); font-weight: 400;
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 600; margin-bottom: 2.5rem;
+            color: var(--light-text); position: relative; padding-bottom: 0.6rem;
+            text-shadow: 0 0 8px var(--primary-soft-glow); border-bottom: 2px solid var(--border-color);
+        }
+
+        /* Styling for lists */
+        .content-section ul {
+            list-style: none;
+            padding-left: 0;
             margin-bottom: 2rem;
-            color: var(--primary);
-            position: relative;
-            display: inline-block;
+        }
+        .content-section ul li {
+            background: rgba(var(--primary-rgb), 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 0.8rem;
+            border-radius: 4px;
+            color: var(--medium-text);
+            font-size: 0.95rem;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+         .content-section ul li::before {
+            content: "\f058"; /* FontAwesome check-circle, or \f101 for right arrow */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--primary-light);
+            margin-right: 0.8rem;
+        }
+        .content-section ul li:hover {
+            background: rgba(var(--primary-rgb), 0.1);
+            border-left-color: var(--primary-light);
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60%;
-            height: 3px;
-            background: var(--primary);
+        .content-section p {
+            color: var(--medium-text);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.8;
         }
+        .content-section strong { color: var(--light-text); }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 4px solid var(--primary);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            color: var(--primary);
-            margin-top: 0;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-icon {
-            color: var(--secondary);
-            font-size: 1.2rem;
-            margin-top: 3px;
-        }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 500; font-size: 0.95rem;
+            text-decoration: none; transition: all 0.25s ease-out; cursor: pointer; border: 1px solid transparent;
+            margin-right: 0.5rem; margin-bottom: 0.5rem; /* Spacing for multiple buttons */
+        }
+        .btn i { margin-right: 0.3em; font-size: 1.1em; }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: white;
+            box-shadow: 0 4px 10px var(--primary-soft-glow), 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            box-shadow: 0 6px 15px var(--primary-glow), 0 3px 7px rgba(0,0,0,0.3); transform: translateY(-2px);
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.3);
+        .apply-buttons-container {
+            margin-top: 1.5rem;
         }
 
         .footer {
-            text-align: center;
-            padding: 4rem 0;
-            margin-top: 4rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center; padding: 3rem 0 2.5rem; margin-top:4rem;
+            border-top: 1px solid var(--border-color); background: var(--dark-bg);
         }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
+        .footer .section-title { font-size: clamp(1.6rem, 4vw, 2rem); margin-bottom: 1.5rem; }
+        .footer p:not(.copyright) { color: var(--medium-text); margin-bottom: 2rem; font-size:0.95rem; max-width: 600px; margin-left:auto; margin-right:auto;}
+        .social-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2.5rem;}
         .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
+            display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+            background: rgba(var(--primary-rgb), 0.1); color: var(--medium-text); font-size: 1.1rem;
+            border-radius: 50%; transition: all 0.2s ease; border: 1px solid var(--border-color);
         }
-
-        .social-links a:hover {
-            color: var(--primary);
+        .social-links a:hover, .social-links a:focus {
+            background: var(--primary); color:white; transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 4px 10px var(--primary-soft-glow); border-color:var(--primary);
         }
+        .copyright { color: var(--medium-text); font-size: 0.8rem; opacity: 0.7;}
 
         @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
+            :root { --navbar-height: 60px; }
+             .navbar { height:auto; } /* Allow navbar to wrap */
+            .nav-container { flex-direction: column; gap: 0.5rem; padding-top:0.5rem; padding-bottom: 0.5rem;}
+            .nav-links { gap: 0.5rem 1rem; justify-content: center;}
+            section { padding-top: calc(var(--navbar-height) + 2rem); padding-bottom: 3rem; }
+            .jobs-hero { padding-top: 80px; } /* Static offset for wrapped navbar */
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <img src="https://glowing-boba-bb33bb.netlify.app/logo_home.png" alt="Spargat Group Logo" class="nav-logo">
-            </a>
-            <div class="nav-links">
-                <a href="https://spargatgroup.github.io/about">About</a>
-                <a href="https://spargatgroup.github.io/projects">Projects</a> 
-                <a href="https://spargatgroup.github.io/goals">Goals</a>
-                <a href="https://spargatgroup.github.io/contact">Contact</a>
-                <a href="https://spargatgroup.github.io/jobs">Jobs</a>
+    <div id="particles-js"></div>
+    <div class="content-wrapper">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="nav-logo-link"> <!-- Point logo to index.html -->
+                    <img src="https://glowing-boba-bb33bb.netlify.app/logo_home.png" alt="Spargat Group Logo" class="nav-logo">
+                </a>
+                <div class="nav-links">
+                    <a href="index.html#about">About Us</a>
+                    <a href="index.html#initiatives">Initiatives</a>
+                    <a href="index.html#mission">Our Mission</a>
+                    <a href="index.html#contact">Connect</a>
+                    <a href="jobs.html" class="active">Careers</a> <!-- Set Careers as active -->
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <div class="container">
-        <section class="hero" id="jobs">
-            <h1>Join Our Development Team</h1>
-            <p>Become a developer or helper for Spargat Group. Help us create and evolve Blockman GO solutions.</p>
-        </section>
+        <header class="jobs-hero" id="hero"> <!-- Using header for semantic clarity -->
+            <div class="container">
+                <h1>Join Our Development Team</h1>
+                <p class="subtitle">Become a valued contributor to Spargat Group. Help us create and evolve innovative Blockman GO solutions.</p>
+            </div>
+        </header>
 
-        <section id="project-info">
-            <h2 class="section-title">Project Information</h2>
-            <p>This is a closed-source project, and the source code will never be opened to the public. Only trusted volunteers and developers will have access to certain parts of the codebase.</p>
-        </section>
+        <main> <!-- Main content of the jobs page -->
+            <section id="project-info" class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Project Approach & Code Access</h2>
+                    <p>Our core projects are developed under a closed-source model to maintain focus and integrity. Source code access is provided on a need-to-know basis to trusted volunteers and dedicated developers for specific modules or components relevant to their contributions.</p>
+                    <p>This ensures that while collaboration is key, the central vision and quality of our projects are upheld. We value transparency in our goals and community engagement, even with this development model.</p>
+                </div>
+            </section>
 
-        <section id="privileges">
-            <h2 class="section-title">Privileges</h2>
-            <ul>
-                <li>Access to the project for creating public/private servers of CubicalCore, BlockmanLORD, and Blockman Launcher.</li>
-                <li>Use parts of the code for any developer-related projects.</li>
-                <li>Database access for team projects.</li>
-            </ul>
-        </section>
+            <section id="privileges" class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Contributor Privileges</h2>
+                    <p>As an active contributor, you may be granted privileges including:</p>
+                    <ul>
+                        <li>Access to specific project repositories for creating public/private servers (e.g., for CubicalCore based projects).</li>
+                        <li>Permission to utilize designated code snippets or libraries for related developer projects, with appropriate attribution.</li>
+                        <li>Potential access to development databases or testing environments relevant to team projects.</li>
+                    </ul>
+                </div>
+            </section>
 
-        <section id="rules">
-            <h2 class="section-title">Rules</h2>
-            <ul>
-                <li>No leaking the project's sources to anyone.</li>
-                <li>Active contributions are required (developers must commit regularly, especially within a month).</li>
-                <li>Knowledge of languages like C, Java, Kotlin, C++, Bash, and Git is essential.</li>
-                <li>When making servers or using the code, copyright is required, and credit must be given for usage of the project.</li>
-            </ul>
-        </section>
+            <section id="rules" class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Code of Conduct & Contribution</h2>
+                     <p>To ensure a productive and secure development environment, we have a few key guidelines:</p>
+                    <ul>
+                        <li><strong>Confidentiality:</strong> No unauthorized sharing or leaking of project source code or internal development details.</li>
+                        <li><strong>Active Engagement:</strong> Consistent and meaningful contributions are expected. Developers should aim for regular commits, especially within a monthly cycle for active projects.</li>
+                        <li><strong>Technical Foundation:</strong> A good understanding of relevant languages and tools is essential (see Skills Required).</li>
+                        <li><strong>Attribution:</strong> When utilizing Spargat Group code or assets in your own projects (where permitted), proper copyright notice and credit to Spargat Group are mandatory.</li>
+                    </ul>
+                </div>
+            </section>
 
-        <section id="skills">
-            <h2 class="section-title">Skills Required</h2>
-            <ul>
-                <li>Proficiency in C, Java, Kotlin, C++, Bash, and Git.</li>
-                <li>Experience with closed-source game development and server management.</li>
-                <li>Ability to collaborate with a team and make consistent contributions.</li>
-            </ul>
-        </section>
+            <section id="skills" class="content-section">
+                <div class="container">
+                    <h2 class="section-title">Essential Skills & Experience</h2>
+                    <p>We are looking for individuals with:</p>
+                    <ul>
+                        <li>Proficiency in one or more of the following: C, Java, Kotlin, C++, Bash.</li>
+                        <li>Strong experience with Git version control.</li>
+                        <li>Experience or strong interest in game development, server management, or related backend systems.</li>
+                        <li>Ability to collaborate effectively within a remote team environment.</li>
+                        <li>A proactive approach to problem-solving and continuous learning.</li>
+                        <li>Passion for the Blockman GO community and open-source principles (even if our core is closed-source).</li>
+                    </ul>
+                </div>
+            </section>
 
-        <section id="contact">
-            <h2 class="section-title">How to Apply</h2>
-            <p>If you're interested in joining our team, contact one of the owners for further details and next steps.</p>
-            <a href="https://discord.com/users/1324359704180162592" class="btn">Comical</a>
-            <a href="https://discord.com/users/741001633881915403" class="btn">TheKing</a>
-            <a href="https://discord.com/users/1146924441541025835" class="btn">Anatine</a>
+            <section id="how-to-apply" class="content-section">
+                <div class="container">
+                    <h2 class="section-title">How to Express Interest</h2>
+                    <p>If you're passionate about Blockman GO, possess the relevant skills, and wish to contribute to Spargat Group's mission, we'd love to hear from you. Please reach out to one of our project leads on Discord for an initial conversation:</p>
+                    <div class="apply-buttons-container">
+                        <a href="https://discord.com/users/1324359704180162592" target="_blank" class="btn btn-primary"><i class="fab fa-discord"></i> Contact Comical</a>
+                        <a href="https://discord.com/users/741001633881915403" target="_blank" class="btn btn-primary"><i class="fab fa-discord"></i> Contact TheKing</a>
+                        <a href="https://discord.com/users/1146924441541025835" target="_blank" class="btn btn-primary"><i class="fab fa-discord"></i> Contact Anatine</a>
+                    </div>
+                </div>
+            </section>
+        </main>
 
-        </section>
+        <footer class="footer" id="page-footer"> <!-- Differentiate footer id if main page has 'contact' too -->
+            <div class="container">
+                <h2 class="section-title">Spargat Group</h2>
+                <p>Innovating for the Blockman Ecosystem.</p>
+                <div class="social-links">
+                    <a href="https://github.com/spargatgroup" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://gitlab.com/spargat" target="_blank" title="GitLab"><i class="fab fa-gitlab"></i></a>
+                    <a href="https://discord.gg/PqZtGn3HMn" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="https://youtube.com/@BlockmanLauncher" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="copyright">© 2024 Spargat Group. A community-driven organization. <br>Not affiliated with NetEase or Mojang. Blockman GO is a registered trademark of NetEase.</p>
+            </div>
+        </footer>
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <h2 class="section-title">Connect With Us</h2>
-            <div class="social-links">
-        <a href="https://github.com/spargatgroup" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://gitlub.com/spargat" target="_blank"><i class="fab fa-gitlab"></i></a>
-                <a href="https://discord.gg/PqZtGn3HMn" target="_blank"><i class="fab fa-discord"></i></a>
-                <a href="https://youtube.com/@BlockmanLauncher" target="_blank"><i class="fab fa-youtube"></i></a>
-            </div>
-        </div>
-    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const lenis = new Lenis({ lerp: 0.085, duration: 1.6, smoothWheel: true });
+            function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+            requestAnimationFrame(raf);
+
+            // Active Nav Link highlighting for *this* page (jobs.html)
+            const currentPath = window.location.pathname.split("/").pop();
+            const navLinks = document.querySelectorAll(".nav-links a");
+            navLinks.forEach(link => {
+                link.classList.remove('active'); // Remove active from all
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+                 // Ensure "Careers" link in navbar is active on jobs.html
+                if (link.getAttribute('href') === 'jobs.html' && currentPath === 'jobs.html') {
+                    link.classList.add('active');
+                }
+            });
+
+
+            // Smooth scroll for any internal hash links on this page (if any were added)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    const navbar = document.querySelector('.navbar');
+                    const navbarHeight = navbar ? navbar.offsetHeight : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--navbar-height')) || 70;
+                    
+                    if (href === "#" || href === "#hero") {
+                         lenis.scrollTo(0, { duration: 1.6, offset: 0 });
+                    } else {
+                        lenis.scrollTo(href, { offset: -navbarHeight + 5, duration: 1.6 });
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        if (window.particlesJS) {
+            const primaryColorVal = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+            particlesJS('particles-js', { /* ... (Same particles config as main page) ... */
+                particles: {
+                    number: { value: 30, density: { enable: true, value_area: 1000 } }, // Fewer particles for less busy page
+                    color: { value: primaryColorVal }, shape: { type: "circle" },
+                    opacity: { value: 0.25, random: true, anim: { enable: true, speed: 0.4, opacity_min: 0.05, sync: false } },
+                    size: { value: 2, random: true },
+                    line_linked: { enable: true, distance: 150, color: primaryColorVal, opacity: 0.08, width: 1 },
+                    move: { enable: true, speed: 0.7, direction: "none", random: true, straight: false, out_mode: "out" }
+                },
+                interactivity: {
+                    detect_on: "canvas", events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: false }, resize: true },
+                    modes: { grab: { distance: 110, line_opacity: 0.1 } }
+                },
+                retina_detect: true
+            });
+        }
+    </script>
 </body>
 </html>
