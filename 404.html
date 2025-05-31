@@ -3,199 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spargat Group - Page Not Found</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Spargat Group - Page Not Found (404)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- No Lenis needed for a simple 404 page unless you really want smooth scroll to top if page gets long -->
     <style>
         :root {
-            --primary: #5865F2;
-            --secondary: #3BA55C;
-            --accent: #FF7675;
-            --dark: #2D2D3A;
-            --light: #F8F9FA;
+            --primary: #7950F2; /* Vibrant Purple/Indigo - Main Accent */
+            --primary-light: #926BFF;
+            --primary-glow: rgba(121, 80, 242, 0.5);
+            --primary-soft-glow: rgba(121, 80, 242, 0.3);
+
+            --dark-bg: #0D0C1D;
+            --content-bg: #121127;
+            --content-bg-alpha: rgba(18, 17, 39, 0.85);
+            --border-color: rgba(121, 80, 242, 0.2);
+
+            --light-text: #E0E7FF;
+            --medium-text: #A0A8C0;
+
+            --navbar-height: 70px; /* Consistent with main site */
+
+            --scrollbar-track: #1A1932;
+            --scrollbar-thumb: var(--primary);
+            --scrollbar-thumb-hover: var(--primary-light);
+
+            --primary-rgb: 121, 80, 242;
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; background: var(--dark-bg); scrollbar-gutter: stable both-edges; }
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--dark), #1A1A24);
-            color: var(--light);
-            margin: 0;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif; background-color: var(--dark-bg); color: var(--light-text);
+            line-height: 1.7; overflow-x: hidden; min-height: 100vh; position: relative;
+            display: flex; flex-direction: column; /* For sticky footer effect */
+            scrollbar-width: thin; scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
         }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+        ::-webkit-scrollbar-thumb { background-color: var(--scrollbar-thumb); border-radius: 10px; border: 2px solid var(--scrollbar-track); }
+        ::-webkit-scrollbar-thumb:hover { background-color: var(--scrollbar-thumb-hover); }
+        #particles-js { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; opacity: 0.08; }
+        .content-wrapper { position: relative; z-index: 1; flex-grow: 1; display:flex; flex-direction: column; } /* Grow to push footer down */
 
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(45, 45, 58, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+        .navbar { /* Minimal navbar for 404 page */
+            position: fixed; /* Or 'absolute' if you prefer it not to overlay particles when scrolling on other pages */
+            top: 0; left:0; width: 100%; background: var(--content-bg-alpha);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            z-index: 1000; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid var(--border-color); height: var(--navbar-height);
+            display:flex; align-items: center;
         }
-
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
+            max-width: 1200px; width:100%; margin: 0 auto; display: flex;
+            justify-content: space-between; align-items: center; padding: 0 2rem;
         }
-
+        .nav-logo-link { display: flex; align-items: center;}
         .nav-logo {
-            height: 50px;
-            transition: transform 0.3s ease;
+            height: 38px; transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 5px var(--primary-soft-glow));
         }
+        .nav-logo:hover { transform: scale(1.05); filter: drop-shadow(0 0 10px var(--primary-glow));}
+        /* No nav-links needed for 404 typically */
 
-        .nav-logo:hover {
-            transform: rotate(-5deg);
-        }
-
-        .nav-links {
+        .error-page-container {
+            flex-grow: 1; /* Takes up available space */
             display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 2rem 4rem;
-        }
-
-        .hero {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 6rem 0 4rem;
+            padding: 2rem;
+            padding-top: var(--navbar-height); /* Space for navbar */
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
+        .error-code {
+            font-size: clamp(6rem, 20vw, 12rem); /* Large, responsive 404 text */
+            font-weight: 700;
             color: var(--primary);
-            position: relative;
-            display: inline-block;
+            line-height: 1;
+            margin-bottom: 0;
+            text-shadow: 0 0 20px var(--primary-glow), 0 0 40px var(--primary-soft-glow);
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60%;
-            height: 3px;
-            background: var(--primary);
+        .error-message {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 600;
+            color: var(--light-text);
+            margin-bottom: 1rem;
+            margin-top: -1rem; /* Overlap with 404 code slightly */
+             text-shadow: 0 0 10px var(--primary-soft-glow);
+        }
+
+        .error-description {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--medium-text);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
         }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            margin-top: 2rem;
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            padding: 0.8rem 1.8rem; border-radius: 6px; font-weight: 500; font-size: 1rem;
+            text-decoration: none; transition: all 0.25s ease-out; cursor: pointer; border: 1px solid transparent;
         }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.3);
+        .btn i { margin-right: 0.4em; font-size: 1.1em; }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: white;
+            box-shadow: 0 4px 10px var(--primary-soft-glow), 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            box-shadow: 0 6px 15px var(--primary-glow), 0 3px 7px rgba(0,0,0,0.3); transform: translateY(-2px);
         }
 
         .footer {
-            text-align: center;
-            padding: 4rem 0;
-            margin-top: 4rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center; padding: 2rem 0 1.5rem;
+            border-top: 1px solid var(--border-color); background: var(--dark-bg);
+            width: 100%; /* Ensure footer spans full width */
         }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
+        .footer p.copyright { color: var(--medium-text); font-size: 0.8rem; opacity: 0.7;}
+         /* Social links can be minimal or same as main site's footer */
+        .social-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem;}
         .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
+            display: flex; align-items: center; justify-content: center; width: 35px; height: 35px;
+            background: rgba(var(--primary-rgb), 0.1); color: var(--medium-text); font-size: 1rem;
+            border-radius: 50%; transition: all 0.2s ease; border: 1px solid var(--border-color);
         }
-
-        .social-links a:hover {
-            color: var(--primary);
+        .social-links a:hover, .social-links a:focus {
+            background: var(--primary); color:white; transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 4px 10px var(--primary-soft-glow); border-color:var(--primary);
         }
 
         @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
+             :root { --navbar-height: 60px; }
+             .navbar { height:auto; }
+            .nav-container { justify-content: center; /* Center logo if no nav links */}
+            .error-code { font-size: clamp(5rem, 25vw, 10rem); }
+            .error-message { font-size: clamp(1.2rem, 6vw, 2rem); }
         }
+
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index" class="logo">
-                <img src="https://glowing-boba-bb33bb.netlify.app/logo_home.png" alt="Spargat Group Logo" class="nav-logo">
-            </a>
-        </div>
-    </nav>
+    <div id="particles-js"></div>
+    <div class="content-wrapper">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="nav-logo-link"> <!-- Always link to index.html from 404 -->
+                    <img src="https://glowing-boba-bb33bb.netlify.app/logo_home.png" alt="Spargat Group Logo" class="nav-logo">
+                </a>
+                <!-- No navigation links typically on a 404 page -->
+            </div>
+        </nav>
 
-    <div class="container">
-        <section class="hero">
-            <h1>Oops, Page Not Found!</h1>
-            <a href="index" class="btn"><i class="fas fa-home"></i> Go Home</a>
-        </section>
+        <main class="error-page-container">
+            <div class="error-code">404</div>
+            <h1 class="error-message">Page Not Found</h1>
+            <p class="error-description">
+                Oops! The page you're looking for doesn't seem to exist.
+                It might have been moved, deleted, or maybe you mistyped the URL.
+            </p>
+            <a href="index.html" class="btn btn-primary"><i class="fas fa-home"></i> Go Back to Homepage</a>
+        </main>
+
+        <footer class="footer">
+             <div class="social-links">
+                <a href="https://github.com/spargatgroup" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://gitlab.com/spargat" target="_blank" title="GitLab"><i class="fab fa-gitlab"></i></a>
+                <a href="https://discord.gg/PqZtGn3HMn" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                <a href="https://youtube.com/@BlockmanLauncher" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="copyright">© 2024 Spargat Group. All rights reserved.</p>
+        </footer>
     </div>
 
-    <footer class="footer" id="contact">
-        <div class="container">
-            <h2 class="section-title">Connect With Us</h2>
-            <div class="social-links">
-                <a href="https://github.com/spargatgroup" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://gitlab.com/spargat" target="_blank"><i class="fab fa-gitlab"></i></a>
-                <a href="https://discord.gg/PqZtGn3HMn" target="_blank"><i class="fab fa-discord"></i></a>
-                <a href="https://youtube.com/@BlockmanLauncher" target="_blank"><i class="fab fa-youtube"></i></a>
-            </div>
-            <p>© 2024 Spargat Group. Not affiliated with NetEase or Mojang.</p>
-        </div>
-    </footer>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Minimal particles for 404 to keep it light but themed
+        if (window.particlesJS) {
+            const primaryColorVal = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 25, density: { enable: true, value_area: 1200 } }, // Even fewer
+                    color: { value: primaryColorVal }, shape: { type: "circle" },
+                    opacity: { value: 0.2, random: true, anim: { enable: false } }, // Less opacity animation
+                    size: { value: 1.5, random: true },
+                    line_linked: { enable: true, distance: 180, color: primaryColorVal, opacity: 0.05, width: 1 }, // Very faint lines
+                    move: { enable: true, speed: 0.5, direction: "none", random: true, straight: false, out_mode: "out" }
+                },
+                interactivity: {
+                    detect_on: "canvas", events: { onhover: { enable: false }, onclick: { enable: false }, resize: true } // No interactivity
+                },
+                retina_detect: true
+            });
+        }
+    </script>
 </body>
 </html>
