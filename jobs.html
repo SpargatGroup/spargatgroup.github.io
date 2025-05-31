@@ -4,12 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Careers - Join Spargat Group</title>
+
+    <!-- SEO and General Meta -->
+    <meta name="description" content="Join Spargat Group: A Developer Group, Small But Great Team! Explore opportunities to contribute.">
+
+    <!-- Open Graph / Facebook / Discord -->
+    <meta property="og:title" content="Careers at Spargat Group">
+    <meta property="og:description" content="A Developer Group, Small But Great Team!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="YOUR_FULL_URL_TO_JOBS.HTML_HERE"> <!-- e.g., https://spargatgroup.github.io/jobs.html -->
+    <meta property="og:site_name" content="Spargat Group">
+    <meta property="og:image" content="https://glowing-boba-bb33bb.netlify.app/logo_home.png">
+    <meta property="og:image:alt" content="Spargat Group Logo">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Careers at Spargat Group">
+    <meta name="twitter:description" content="A Developer Group, Small But Great Team!">
+    <meta name="twitter:image" content="https://glowing-boba-bb33bb.netlify.app/logo_home.png">
+    <!-- <meta name="twitter:site" content="@YourTwitterHandle"> -->
+
+    <!-- Theme Color for Browser UI -->
+    <meta name="theme-color" content="#7950F2">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <style>
         :root {
-            --primary: #7950F2; /* Vibrant Purple/Indigo - Main Accent */
+            --primary: #7950F2;
             --primary-light: #926BFF;
             --primary-glow: rgba(121, 80, 242, 0.5);
             --primary-soft-glow: rgba(121, 80, 242, 0.3);
@@ -28,7 +52,7 @@
             --scrollbar-thumb: var(--primary);
             --scrollbar-thumb-hover: var(--primary-light);
 
-            --primary-rgb: 121, 80, 242; /* For direct use in rgba() for card hover */
+            --primary-rgb: 121, 80, 242;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -76,7 +100,7 @@
         }
         .nav-links a:hover::after, .nav-links a:focus::after, .nav-links a.active::after { width: 100%; }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; width: 100%; } /* Narrower for readability on text-heavy pages */
+        .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; width: 100%; }
 
         section {
             padding-top: calc(var(--navbar-height) + 4rem);
@@ -85,7 +109,7 @@
         }
         section[id] { scroll-margin-top: var(--navbar-height); }
 
-        .jobs-hero { /* Similar to main hero but adapted */
+        .jobs-hero {
             padding-top: calc(var(--navbar-height) + 2rem);
             padding-bottom: 3rem;
             text-align: center;
@@ -108,48 +132,27 @@
             text-shadow: 0 0 8px var(--primary-soft-glow); border-bottom: 2px solid var(--border-color);
         }
 
-        /* Styling for lists */
-        .content-section ul {
-            list-style: none;
-            padding-left: 0;
-            margin-bottom: 2rem;
-        }
+        .content-section ul { list-style: none; padding-left: 0; margin-bottom: 2rem; }
         .content-section ul li {
             background: rgba(var(--primary-rgb), 0.05);
             border-left: 3px solid var(--primary);
-            padding: 0.8rem 1.2rem;
-            margin-bottom: 0.8rem;
-            border-radius: 4px;
-            color: var(--medium-text);
-            font-size: 0.95rem;
+            padding: 0.8rem 1.2rem; margin-bottom: 0.8rem;
+            border-radius: 4px; color: var(--medium-text); font-size: 0.95rem;
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
          .content-section ul li::before {
-            content: "\f058"; /* FontAwesome check-circle, or \f101 for right arrow */
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            color: var(--primary-light);
-            margin-right: 0.8rem;
+            content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+            color: var(--primary-light); margin-right: 0.8rem;
         }
-        .content-section ul li:hover {
-            background: rgba(var(--primary-rgb), 0.1);
-            border-left-color: var(--primary-light);
-        }
-
-        .content-section p {
-            color: var(--medium-text);
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-            line-height: 1.8;
-        }
+        .content-section ul li:hover { background: rgba(var(--primary-rgb), 0.1); border-left-color: var(--primary-light); }
+        .content-section p { color: var(--medium-text); margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.8; }
         .content-section strong { color: var(--light-text); }
-
 
         .btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
             padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 500; font-size: 0.95rem;
             text-decoration: none; transition: all 0.25s ease-out; cursor: pointer; border: 1px solid transparent;
-            margin-right: 0.5rem; margin-bottom: 0.5rem; /* Spacing for multiple buttons */
+            margin-right: 0.5rem; margin-bottom: 0.5rem;
         }
         .btn i { margin-right: 0.3em; font-size: 1.1em; }
         .btn-primary {
@@ -161,9 +164,7 @@
             box-shadow: 0 6px 15px var(--primary-glow), 0 3px 7px rgba(0,0,0,0.3); transform: translateY(-2px);
         }
 
-        .apply-buttons-container {
-            margin-top: 1.5rem;
-        }
+        .apply-buttons-container { margin-top: 1.5rem; }
 
         .footer {
             text-align: center; padding: 3rem 0 2.5rem; margin-top:4rem;
@@ -184,12 +185,12 @@
         .copyright { color: var(--medium-text); font-size: 0.8rem; opacity: 0.7;}
 
         @media (max-width: 768px) {
-            :root { --navbar-height: 60px; }
-             .navbar { height:auto; } /* Allow navbar to wrap */
+            :root { --navbar-height: auto; }
+             .navbar { height:auto; }
             .nav-container { flex-direction: column; gap: 0.5rem; padding-top:0.5rem; padding-bottom: 0.5rem;}
             .nav-links { gap: 0.5rem 1rem; justify-content: center;}
-            section { padding-top: calc(var(--navbar-height) + 2rem); padding-bottom: 3rem; }
-            .jobs-hero { padding-top: 80px; } /* Static offset for wrapped navbar */
+            section { padding-top: 80px; padding-bottom: 3rem; } /* Static offset for wrapped nav */
+            .jobs-hero { padding-top: 80px; }
         }
     </style>
 </head>
@@ -198,27 +199,27 @@
     <div class="content-wrapper">
         <nav class="navbar">
             <div class="nav-container">
-                <a href="index.html" class="nav-logo-link"> <!-- Point logo to index.html -->
+                <a href="index.html" class="nav-logo-link">
                     <img src="https://glowing-boba-bb33bb.netlify.app/logo_home.png" alt="Spargat Group Logo" class="nav-logo">
                 </a>
                 <div class="nav-links">
                     <a href="index.html#about">About Us</a>
                     <a href="index.html#initiatives">Initiatives</a>
                     <a href="index.html#mission">Our Mission</a>
+                    <a href="jobs.html" class="active">Careers</a>
                     <a href="index.html#contact">Connect</a>
-                    <a href="jobs.html" class="active">Careers</a> <!-- Set Careers as active -->
                 </div>
             </div>
         </nav>
 
-        <header class="jobs-hero" id="hero"> <!-- Using header for semantic clarity -->
+        <header class="jobs-hero" id="hero">
             <div class="container">
                 <h1>Join Our Development Team</h1>
                 <p class="subtitle">Become a valued contributor to Spargat Group. Help us create and evolve innovative Blockman GO solutions.</p>
             </div>
         </header>
 
-        <main> <!-- Main content of the jobs page -->
+        <main>
             <section id="project-info" class="content-section">
                 <div class="container">
                     <h2 class="section-title">Project Approach & Code Access</h2>
@@ -280,7 +281,7 @@
             </section>
         </main>
 
-        <footer class="footer" id="page-footer"> <!-- Differentiate footer id if main page has 'contact' too -->
+        <footer class="footer" id="page-footer">
             <div class="container">
                 <h2 class="section-title">Spargat Group</h2>
                 <p>Innovating for the Blockman Ecosystem.</p>
@@ -301,32 +302,29 @@
             function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
             requestAnimationFrame(raf);
 
-            // Active Nav Link highlighting for *this* page (jobs.html)
-            const currentPath = window.location.pathname.split("/").pop();
+            const currentPath = window.location.pathname.split("/").pop() || "jobs.html"; // Fallback for local view
             const navLinks = document.querySelectorAll(".nav-links a");
             navLinks.forEach(link => {
-                link.classList.remove('active'); // Remove active from all
+                link.classList.remove('active');
                 if (link.getAttribute('href') === currentPath) {
-                    link.classList.add('active');
-                }
-                 // Ensure "Careers" link in navbar is active on jobs.html
-                if (link.getAttribute('href') === 'jobs.html' && currentPath === 'jobs.html') {
                     link.classList.add('active');
                 }
             });
 
-
-            // Smooth scroll for any internal hash links on this page (if any were added)
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
+                     const href = this.getAttribute('href');
+                     // For jobs page, allow external links and links to index.html sections to behave normally
+                     if (!href.startsWith("#") || href.includes("index.html#")) {
+                        return;
+                    }
                     e.preventDefault();
-                    const href = this.getAttribute('href');
                     const navbar = document.querySelector('.navbar');
                     const navbarHeight = navbar ? navbar.offsetHeight : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--navbar-height')) || 70;
                     
-                    if (href === "#" || href === "#hero") {
+                    if (href === "#" || href === "#hero") { // For scrolling to top of jobs page if #hero exists
                          lenis.scrollTo(0, { duration: 1.6, offset: 0 });
-                    } else {
+                    } else { // For any other internal hash links on jobs.html itself
                         lenis.scrollTo(href, { offset: -navbarHeight + 5, duration: 1.6 });
                     }
                 });
@@ -337,9 +335,9 @@
     <script>
         if (window.particlesJS) {
             const primaryColorVal = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
-            particlesJS('particles-js', { /* ... (Same particles config as main page) ... */
+            particlesJS('particles-js', {
                 particles: {
-                    number: { value: 30, density: { enable: true, value_area: 1000 } }, // Fewer particles for less busy page
+                    number: { value: 30, density: { enable: true, value_area: 1000 } },
                     color: { value: primaryColorVal }, shape: { type: "circle" },
                     opacity: { value: 0.25, random: true, anim: { enable: true, speed: 0.4, opacity_min: 0.05, sync: false } },
                     size: { value: 2, random: true },
