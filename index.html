@@ -3,319 +3,452 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spargat Group - Innovative Blockman GO Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+    <title>Spargat Group - Innovating the Blockman Ecosystem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <style>
         :root {
-            --primary: #5865F2;
-            --secondary: #3BA55C;
-            --accent: #FF7675;
-            --dark: #2D2D3A;
-            --light: #F8F9FA;
+            --primary: #7950F2; /* Vibrant Purple/Indigo - Main Accent */
+            --primary-light: #926BFF;
+            --primary-glow: rgba(121, 80, 242, 0.5);
+            --primary-soft-glow: rgba(121, 80, 242, 0.3);
+
+            --secondary-cta: #5C7CFA;
+            --secondary-cta-glow: rgba(92, 124, 250, 0.4);
+
+            --dark-bg: #0D0C1D;
+            --content-bg: #121127;
+            --content-bg-alpha: rgba(18, 17, 39, 0.85);
+            --border-color: rgba(121, 80, 242, 0.2);
+
+            --light-text: #E0E7FF;
+            --medium-text: #A0A8C0;
+
+            --navbar-height: 70px;
+
+            --scrollbar-track: #1A1932;
+            --scrollbar-thumb: var(--primary);
+            --scrollbar-thumb-hover: var(--primary-light);
+
+            --primary-rgb: 121, 80, 242; /* For direct use in rgba() for card hover */
         }
 
+        /* ... (Keep existing CSS Reset, body, scrollbar, particles-js, content-wrapper styles) ... */
+        /* CSS Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; background: var(--dark-bg); scrollbar-gutter: stable both-edges; }
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--dark), #1A1A24);
-            color: var(--light);
-            margin: 0;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif; background-color: var(--dark-bg); color: var(--light-text);
+            line-height: 1.7; overflow-x: hidden; min-height: 100vh; position: relative;
+            scrollbar-width: thin; scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
         }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+        ::-webkit-scrollbar-thumb { background-color: var(--scrollbar-thumb); border-radius: 10px; border: 2px solid var(--scrollbar-track); }
+        ::-webkit-scrollbar-thumb:hover { background-color: var(--scrollbar-thumb-hover); }
+        #particles-js { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; opacity: 0.08; } /* Even more subtle particles */
+        .content-wrapper { position: relative; z-index: 1; }
+
 
         .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(45, 45, 58, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: fixed; top: 0; left:0; width: 100%; background: var(--content-bg-alpha);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            z-index: 1000; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid var(--border-color); height: var(--navbar-height);
+            display:flex; align-items: center;
         }
-
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
+            max-width: 1200px; width:100%; margin: 0 auto; display: flex;
+            justify-content: space-between; align-items: center; padding: 0 2rem;
         }
-
+        .nav-logo-link { display: flex; align-items: center;}
         .nav-logo {
-            height: 50px;
-            transition: transform 0.3s ease;
+            height: 38px; transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 5px var(--primary-soft-glow));
         }
-
-        .nav-logo:hover {
-            transform: rotate(-5deg);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
+        .nav-logo:hover { transform: scale(1.05); filter: drop-shadow(0 0 10px var(--primary-glow));}
+        .nav-links { display: flex; gap: 1.2rem; }
         .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            color: var(--medium-text); text-decoration: none; font-weight: 500;
+            transition: color 0.3s ease, text-shadow 0.3s ease; position: relative;
+            padding: 0.5rem 0.25rem; font-size: 0.9rem;
         }
+        .nav-links a:hover, .nav-links a:focus, .nav-links a.active { color: var(--light-text); text-shadow: 0 0 8px var(--primary-soft-glow); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -2px; left: 50%;
+            transform: translateX(-50%); width: 0; height: 2px; background: var(--primary);
+            border-radius:1px; transition: width 0.3s ease-out;
+        }
+        .nav-links a:hover::after, .nav-links a:focus::after, .nav-links a.active::after { width: 100%; }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; width: 100%; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 2rem 4rem;
+        section {
+            padding-top: calc(var(--navbar-height) + 4rem); /* More top space for sections */
+            padding-bottom: 5rem;
+            min-height: auto; /* Allow natural height, hero is VH */
+            display: flex; flex-direction: column; justify-content: center;
         }
+        section[id] { scroll-margin-top: var(--navbar-height); }
+
 
         .hero {
-            text-align: center;
-            padding: 6rem 0 4rem;
+            padding-top: var(--navbar-height); min-height: 100vh; position: relative; text-align: center;
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
         }
+        .hero::before {
+            content: ''; position: absolute; top: 50%; left: 50%; width: 70vmax; height: 70vmax;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(ellipse, var(--primary-soft-glow) 0%, transparent 60%);
+            border-radius: 50%; opacity: 0.2; pointer-events: none; z-index:0;
+        }
+        .hero .container { position:relative; z-index:1; }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: clamp(2.5rem, 6.5vw, 4rem); /* Adjusted clamp */
+            font-weight: 700; margin-bottom: 1.2rem;
+            line-height: 1.2; color: var(--light-text);
+             text-shadow: 0 0 15px rgba(224, 231, 255, 0.2), 0 0 25px var(--primary-soft-glow); /* White glow + primary */
         }
+        .hero p.subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.3rem); max-width: 700px; margin: 0 auto 3rem;
+            color: var(--medium-text); font-weight: 400;
+        }
+        .hero-cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
         .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--primary);
-            position: relative;
-            display: inline-block;
+            font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 600; margin-bottom: 3.5rem;
+            color: var(--light-text); position: relative; text-align:center; padding-bottom: 0.75rem;
+            text-shadow: 0 0 10px var(--primary-soft-glow);
         }
-
         .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60%;
-            height: 3px;
-            background: var(--primary);
+            content: ''; position: absolute; bottom: 0; left: 50%;
+            transform: translateX(-50%); width: 70px; height: 3px; background: var(--primary);
+            border-radius: 3px; box-shadow: 0 0 12px var(--primary-glow);
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
 
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 4px solid var(--primary);
-            transition: transform 0.3s ease;
+            background: var(--content-bg); padding: 1.8rem 1.5rem; border-radius: 10px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex; flex-direction: column; /* For button alignment */
         }
-
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(var(--primary-rgb), 0.15), 0 0 20px var(--primary-soft-glow);
+            border-color: var(--primary);
         }
+        .card-content { flex-grow: 1; /* Allows button to stick to bottom */ }
 
         .card h3 {
-            color: var(--primary);
-            margin-top: 0;
+            color: var(--primary-light); font-size: 1.4rem; margin-bottom: 0.8rem;
+            display: flex; align-items: center; gap: 0.6rem; font-weight: 600;
         }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1rem;
+        .card h3 i { font-size: 1.2em; text-shadow: 0 0 5px var(--primary-soft-glow); }
+        .card p, .card .feature-item span {
+            color: var(--medium-text); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.8rem;
         }
+        .card .btn { margin-top: auto; /* Pushes button to bottom if card content is short */ }
 
+
+        .feature-item { display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 0.6rem;}
         .feature-icon {
-            color: var(--secondary);
-            font-size: 1.2rem;
-            margin-top: 3px;
+            color: var(--primary-light); font-size: 1rem; min-width: 18px;
+            margin-top: 5px; text-shadow: 0 0 4px var(--primary-soft-glow);
         }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 500; font-size: 0.95rem;
+            text-decoration: none; transition: all 0.25s ease-out; cursor: pointer; border: 1px solid transparent;
         }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.3);
+        .btn i { margin-right: 0.3em; font-size: 1.1em; }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: white;
+            box-shadow: 0 4px 10px var(--primary-soft-glow), 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            box-shadow: 0 6px 15px var(--primary-glow), 0 3px 7px rgba(0,0,0,0.3); transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: transparent; color: var(--light-text); border: 1px solid var(--primary);
+        }
+        .btn-secondary:hover, .btn-secondary:focus {
+            background: var(--primary-soft-glow); color: white; border-color: var(--primary-light);
+            transform: translateY(-2px); box-shadow: 0 2px 8px var(--primary-soft-glow);
+        }
+        .btn-link { /* Used on project cards */
+             background: rgba(var(--primary-rgb), 0.15); /* More subtle than secondary cta */
+             color:var(--primary-light);
+             border: 1px solid var(--border-color);
+        }
+        .btn-link:hover {
+             background: var(--primary);
+             color:white;
+             border-color:var(--primary);
+             box-shadow: 0 4px 12px var(--primary-soft-glow);
+             transform: translateY(-2px);
         }
 
         .footer {
-            text-align: center;
-            padding: 4rem 0;
-            margin-top: 4rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center; padding: 3rem 0 2.5rem; margin-top:4rem;
+            border-top: 1px solid var(--border-color); background: var(--dark-bg);
         }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
+        .footer .section-title { font-size: clamp(1.6rem, 4vw, 2rem); margin-bottom: 1.5rem; }
+        .footer p:not(.copyright) { color: var(--medium-text); margin-bottom: 2rem; font-size:0.95rem; max-width: 600px; margin-left:auto; margin-right:auto;}
+        .social-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2.5rem;}
         .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
+            display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+            background: rgba(var(--primary-rgb), 0.1); color: var(--medium-text); font-size: 1.1rem;
+            border-radius: 50%; transition: all 0.2s ease; border: 1px solid var(--border-color);
         }
-
-        .social-links a:hover {
-            color: var(--primary);
+        .social-links a:hover, .social-links a:focus {
+            background: var(--primary); color:white; transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 4px 10px var(--primary-soft-glow); border-color:var(--primary);
         }
+        .copyright { color: var(--medium-text); font-size: 0.8rem; opacity: 0.7;}
 
         @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
+            :root { --navbar-height: 60px; }
+            .nav-container { flex-direction: column; gap: 0.5rem; padding-top:0.5rem; padding-bottom: 0.5rem;}
+            .navbar { height:auto; } /* Allow navbar to wrap */
+            .nav-links { gap: 0.5rem 1rem; justify-content: center;}
+            section { padding-top: calc(var(--navbar-height) + 2rem); padding-bottom: 3rem; } /* Account for wrapped navbar */
+            .hero { min-height: 80vh; padding-top: 80px;} /* Static offset for wrapped navbar */
+            .hero h1 { margin-top: 1rem; }
+            .grid { grid-template-columns: 1fr; gap: 1.5rem; }
         }
+
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <img src="https://glowing-boba-bb33bb.netlify.app/logo_home.png" alt="Spargat Group Logo" class="nav-logo">
-            </a>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#projects">Projects</a> 
-                <a href="#goals">Goals</a>
-                <a href="#contact">Contact</a>
-                <a href="jobs">Jobs</a>
-            </div>
-        </div>
-    </nav>
+    <div id="particles-js"></div>
 
-    <div class="container">
-        <section class="hero">
-            <h1>Innovative Solutions for Blockman GO Ecosystem</h1>
-            <p>Developing cross-platform, customizable open-source technology for the community</p>
+    <div class="content-wrapper">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="#" class="nav-logo-link">
+                    <img src="https://glowing-boba-bb33bb.netlify.app/logo_home.png" alt="Spargat Group Logo" class="nav-logo">
+                </a>
+                <div class="nav-links">
+                    <a href="#about" class="active">About Us</a>
+                    <a href="#initiatives">Initiatives</a>
+                    <a href="#mission">Our Mission</a>
+                    <a href="#contact">Connect</a>
+                    <a href="jobs.html">Careers</a>
+                </div>
+            </div>
+        </nav>
+
+        <section class="hero" id="hero">
+            <div class="container">
+                <h1>Spargat Group: Powering the <span style="color: var(--primary-light); text-shadow: 0 0 10px var(--primary-glow);">Blockman</span> Ecosystem</h1>
+                <p class="subtitle">A collective dedicated to open-source innovation, cross-platform accessibility, and fostering a vibrant future for Blockman GO enthusiasts worldwide.</p>
+                <div class="hero-cta-buttons">
+                    <a href="#initiatives" class="btn btn-primary"><i class="fas fa-cogs"></i> Explore Our Initiatives</a>
+                    <a href="#mission" class="btn btn-secondary"><i class="fas fa-bullseye"></i> Discover Our Mission</a>
+                </div>
+            </div>
         </section>
 
         <section id="about">
-            <h2 class="section-title">About Spargat Group</h2>
-            <p>Spargat Group is an innovative team dedicated to developing alternative solutions for the Blockman GO ecosystem, with focus on cross-platform accessibility, customization, and open-source technology for the community. We're known for creating Blockman Launcher and CubicalCore, among other projects.</p>
-        </section>
-
-        <section id="projects">
-            <h2 class="section-title">Main Projects</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3><i class="fas fa-rocket"></i> Blockman Launcher</h3>
-                    <p>An alternative launcher for Blockman GO with support for multiple platforms:</p>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle feature-icon"></i>
-                        <span>Windows XP or highter and Linux</span>
+            <div class="container">
+                <h2 class="section-title">Who We Are</h2>
+                 <p style="text-align: center; max-width: 800px; margin-left: auto; margin-right:auto; margin-bottom: 3.5rem; color: var(--medium-text); font-size: 1.05rem;">
+                    Spargat Group is a passionate, community-driven organization committed to enhancing the Blockman GO experience. We develop open-source tools and platforms that empower players and creators, ensuring the ecosystem remains accessible, dynamic, and innovative.
+                </p>
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3><i class="fas fa-lightbulb"></i> Our Philosophy</h3>
+                            <p>We believe in the power of open collaboration, prioritizing transparency, community feedback, and user-centric design in all our endeavors.</p>
+                        </div>
                     </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle feature-icon"></i>
-                        <span>Developed in response to BMGO Web removal</span>
+                    <div class="card">
+                         <div class="card-content">
+                            <h3><i class="fas fa-users"></i> Community Focus</h3>
+                            <p>Our initiatives are born from community needs and driven by a desire to give back, preserve beloved experiences, and build for the future, together.</p>
+                        </div>
                     </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle feature-icon"></i>
-                        <span>Lightweight, practical and accessible</span>
+                    <div class="card">
+                         <div class="card-content">
+                            <h3><i class="fas fa-rocket"></i> Driving Innovation</h3>
+                            <p>Constantly exploring new technologies and approaches to provide robust, performant, and adaptable solutions for the Blockman GO platform.</p>
+                        </div>
                     </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle feature-icon"></i>
-                        <span>Keeps the game active for all platforms</span>
-                    </div>
-                    <a href="bl" class="btn">Learn More</a>
-                </div>
-
-                <div class="card">
-                    <h3><i class="fas fa-cube"></i> CubicalCore</h3>
-                    <p>A ported version of Minecraft Pocket Edition Demo for modern platforms:</p>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle feature-icon"></i>
-                        <span>Runs on Linux and Windows XP or newer</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle feature-icon"></i>
-                        <span>Base for custom servers or game modes</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle feature-icon"></i>
-                        <span>Modular, lightweight and expandable</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle feature-icon"></i>
-                        <span>Create Bedwars, Skyblock, Lucky Block, etc.</span>
-                    </div>
-                    <a href="cubicalcore" class="btn">Learn More</a>
                 </div>
             </div>
         </section>
 
-        <section id="goals">
-            <h2 class="section-title">Our Goals</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3><i class="fas fa-universal-access"></i> Total Accessibility</h3>
-                    <p>Bring the Blockman experience to all devices regardless of platform limitations or official support.</p>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-history"></i> Experience Preservation</h3>
-                    <p>Revive what the community loves, like the BMGO Web era, keeping classic gameplay available.</p>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-code-branch"></i> Open-Source Community</h3>
-                    <p>Projects built with user and developer collaboration, maintaining a spirit of open contribution.</p>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-paint-brush"></i> Creative Freedom</h3>
-                    <p>Enable unique servers and game modes through CubicalCore's modular foundation.</p>
+        <section id="initiatives"> <!-- Formerly Projects -->
+            <div class="container">
+                <h2 class="section-title">Our Key Initiatives</h2>
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3><i class="fas fa-desktop"></i> Blockman Launcher</h3>
+                            <p>A flagship alternative launcher for Blockman GO, focusing on enhanced performance, stability, and multi-platform access for all players.</p>
+                            <div class="feature-item"><i class="fas fa-check-circle feature-icon"></i><span>Cross-Platform: Windows & Linux</span></div>
+                            <div class="feature-item"><i class="fas fa-check-circle feature-icon"></i><span>Lightweight & Optimized</span></div>
+                        </div>
+                        <a href="bl.html" class="btn btn-link">Learn About Launcher <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="card">
+                         <div class="card-content">
+                            <h3><i class="fas fa-cube"></i> CubicalCore Engine</h3>
+                            <p>A versatile, open-source MCPE Demo port empowering developers to create unique custom servers and game modes within the Blockman GO sphere.</p>
+                            <div class="feature-item"><i class="fas fa-check-circle feature-icon"></i><span>Modular Server Architecture</span></div>
+                            <div class="feature-item"><i class="fas fa-check-circle feature-icon"></i><span>Build Custom Game Modes</span></div>
+                        </div>
+                        <a href="cubicalcore.html" class="btn btn-link">Explore CubicalCore <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <section id="mission"> <!-- Formerly Goals -->
+            <div class="container">
+                <h2 class="section-title">Our Core Mission</h2>
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3><i class="fas fa-universal-access"></i> Ensure Accessibility</h3>
+                            <p>Make the Blockman GO experience available to everyone, regardless of their device or platform constraints.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                         <div class="card-content">
+                            <h3><i class="fas fa-code-branch"></i> Foster Open Source</h3>
+                            <p>Champion a collaborative ecosystem built on open contribution, transparency, and shared knowledge.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                         <div class="card-content">
+                            <h3><i class="fas fa-history"></i> Preserve Legacy</h3>
+                            <p>Keep classic and beloved community experiences alive while paving the way for future innovations.</p>
+                        </div>
+                    </div>
+                     <div class="card">
+                         <div class="card-content">
+                            <h3><i class="fas fa-paint-brush"></i> Empower Creation</h3>
+                            <p>Provide versatile and powerful tools that enable creators to bring their unique Blockman GO visions to life.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer" id="contact">
+            <div class="container">
+                <h2 class="section-title">Connect & Collaborate</h2>
+                <p>Join the Spargat Group community. Follow our progress, contribute to our open-source initiatives, or reach out to learn more.</p>
+                <div class="social-links">
+                    <a href="https://github.com/spargatgroup" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://gitlab.com/spargat" target="_blank" title="GitLab"><i class="fab fa-gitlab"></i></a>
+                    <a href="https://discord.gg/PqZtGn3HMn" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="https://youtube.com/@BlockmanLauncher" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="copyright">© 2024 Spargat Group. A community-driven organization supporting the Blockman Ecosystem. <br>Not affiliated with NetEase or Mojang. Blockman GO is a registered trademark of NetEase.</p>
+            </div>
+        </footer>
     </div>
 
-    <footer class="footer" id="contact">
-        <div class="container">
-            <h2 class="section-title">Connect With Us</h2>
-            <div class="social-links">
-                <a href="https://github.com/spargatgroup" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://gitlub.com/spargat" target="_blank"><i class="fab fa-gitlab"></i></a>
-                <a href="https://discord.gg/PqZtGn3HMn" target="_blank"><i class="fab fa-discord"></i></a>
-                <a href="https://youtube.com/@BlockmanLauncher" target="_blank"><i class="fab fa-youtube"></i></a>
-            </div>
-            <p>© 2024 Spargat Group. Not affiliated with NetEase or Mojang.</p>
-        </div>
-    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const lenis = new Lenis({
+                lerp: 0.085, // Fine-tuned lerp
+                duration: 1.6,
+                smoothWheel: true,
+            });
+
+            function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+            requestAnimationFrame(raf);
+
+            const sections = document.querySelectorAll("section[id]");
+            const navLinks = document.querySelectorAll(".nav-links a");
+            const navbar = document.querySelector('.navbar');
+            const getNavbarHeight = () => navbar ? navbar.offsetHeight : parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--navbar-height')) || 70;
+
+
+            function changeNavActiveState() {
+                let index = sections.length;
+                const currentNavbarHeight = getNavbarHeight();
+                const scrollPosition = window.scrollY + currentNavbarHeight + 50; // Threshold
+
+                while(--index >= 0 && scrollPosition < sections[index].offsetTop) {}
+
+                navLinks.forEach(link => link.classList.remove('active'));
+
+                if (index >= 0) {
+                    const activeLink = document.querySelector(`.nav-links a[href="#${sections[index].id}"]`);
+                    if (activeLink) activeLink.classList.add('active');
+                } else if (window.scrollY < (sections[0]?.offsetTop || currentNavbarHeight) - currentNavbarHeight - 20) { // Special handling for top/hero
+                    const homeLink = document.querySelector('.nav-links a[href="#about"]') || document.querySelector('.nav-links a[href="#hero"]'); // Fallback if no #about link
+                    if(homeLink) homeLink.classList.add('active');
+                }
+            }
+            
+            if (sections.length > 0 && navLinks.length > 0) {
+                window.addEventListener('scroll', changeNavActiveState, { passive: true });
+                changeNavActiveState(); // Initial call
+            }
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    const currentNavbarHeight = getNavbarHeight();
+
+                    if (href === "#" || href === "#hero") {
+                        lenis.scrollTo(0, { duration: 1.6, offset: 0 });
+                    } else {
+                        lenis.scrollTo(href, { offset: -currentNavbarHeight + 5, duration: 1.6 }); // Small positive offset
+                    }
+                });
+            });
+
+            if (window.location.hash) {
+                setTimeout(() => {
+                    const hash = window.location.hash;
+                    const currentNavbarHeight = getNavbarHeight();
+                    if (hash === "#" || hash === "#hero") {
+                        lenis.scrollTo(0, { duration:0, immediate: true });
+                    } else {
+                        lenis.scrollTo(hash, { offset: -currentNavbarHeight + 5 , duration: 0, immediate: true});
+                    }
+                }, 50);
+            } else {
+                setTimeout(() => { lenis.scrollTo(0, {duration:0, immediate: true}); }, 50);
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        if (window.particlesJS) {
+            const primaryColorVal = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 35, density: { enable: true, value_area: 1000 } },
+                    color: { value: primaryColorVal },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.25, random: true, anim: { enable: true, speed: 0.4, opacity_min: 0.05, sync: false } },
+                    size: { value: 2, random: true },
+                    line_linked: { enable: true, distance: 150, color: primaryColorVal, opacity: 0.08, width: 1 }, // Lines very subtle
+                    move: { enable: true, speed: 0.7, direction: "none", random: true, straight: false, out_mode: "out" }
+                },
+                interactivity: {
+                    detect_on: "canvas", events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: false }, resize: true },
+                    modes: { grab: { distance: 110, line_opacity: 0.1 } }
+                },
+                retina_detect: true
+            });
+        }
+    </script>
 </body>
 </html>
