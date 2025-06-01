@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta Refresh Tag for IMMEDIATE Redirect -->
+    <!-- Redirects to 'index.html' after 0 seconds. -->
+    <!-- For GitHub Pages, use the absolute path or just '/' if index.html is at the root -->
+    <meta http-equiv="refresh" content="0;url=index.html">
+
+    <title>Page Not Found - Redirecting...</title>
+    <meta name="robots" content="noindex, nofollow"> <!-- Important for SEO -->
+
+    <style>
+        body {
+            background-color: #0D0C1D; /* Match your dark background */
+            color: #A0A8C0; /* Medium text color for the fallback message */
+            font-family: 'Poppins', sans-serif, Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 1rem;
+        }
+        .redirect-message {
+            font-size: 1rem;
+        }
+        .redirect-message a {
+            color: #926BFF; /* Your primary light color */
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="redirect-message">
+        <p>If you are not redirected automatically, please <a href="index.html">click here to go to the homepage</a>.</p>
+    </div>
+
+    <script>
+        // Fallback JavaScript redirect in case meta refresh fails or is disabled.
+        // This will execute very quickly.
+        (function() {
+            var redirectUrl = 'index.html'; // Ensure this path is correct
+            // Attempt to redirect almost immediately.
+            // The meta refresh should ideally handle it even faster.
+            setTimeout(function() {
+                window.location.replace(redirectUrl); // Use replace to avoid adding 404 to history
+            }, 100); // 100ms delay, very short
+        })();
+    </script>
+</body>
+</html>
